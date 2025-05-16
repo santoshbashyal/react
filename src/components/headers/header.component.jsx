@@ -512,24 +512,24 @@ export const HomeHeader = ({ user }) => {
                 ) : (
                   <>
                     <div className="p-2 text-sm font-medium text-gray-900 dark:text-white">
-                      <a
-                        href="#"
+                      <NavLink
+                        to="/login"
                         title=""
                         className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-primary-100 dark:hover:bg-primary-600"
                       >
                         {" "}
-                        Sign In{" "}
-                      </a>
+                        Log In{" "}
+                      </NavLink>
                     </div>
                     <div className="p-2 text-sm font-medium text-gray-900 dark:text-white">
-                      <a
-                        href="#"
+                      <NavLink
+                        to="/register"
                         title=""
                         className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-primary-100 dark:hover:bg-primary-600"
                       >
                         {" "}
                         Register{" "}
-                      </a>
+                      </NavLink>
                     </div>
                   </>
                 )}

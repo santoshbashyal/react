@@ -12,6 +12,8 @@ import HomePageLayout from "../pages/Layout/home-layout.page";
 import UserLayoutPage from "../pages/Layout/user-layout.page";
 import AdminDashboardPage from "../pages/dashboard/admin-dashboard.page";
 import CategorywiseProductList from "../pages/category/category-product-list.page";
+import NotFoundPage from "../pages/error/notfound";
+import LoginPage from "../pages/auth/loginpage/loginpage";
 
 const router = createBrowserRouter([
   {
@@ -35,8 +37,12 @@ const router = createBrowserRouter([
         element: <CategorywiseProductList />,
       },
       {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
         path: "*",
-        element: <>Error page</>,
+        element: <NotFoundPage />,
       },
     ],
   },
