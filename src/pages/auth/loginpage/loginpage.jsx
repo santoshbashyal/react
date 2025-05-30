@@ -8,10 +8,15 @@
 // c. Unmounting Phase:
 
 // import './../../../assets/css/main.css'
-import React from "react";
+import React, { useState } from "react";
 import "flowbite";
 import { NavLink } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import {
+  InputLabel,
+  TextInputField,
+} from "../../../components/form/input.component";
 
 // import { DarkThemeToggle } from 'flowbite-react';
 
@@ -65,9 +70,39 @@ import { FaArrowRight } from "react-icons/fa";
 //     }
 // }
 const LoginPage = () => {
-  // data store state
-  // state create by using hook
-  // effect hook
+  // // data store state
+  // // state create by using hook
+  // // effect hook
+
+  const {
+    control,
+
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  console.log(errors);
+
+  // const [credentials, setCredentials] = useState();
+
+  // const inputChangeEvent = (e) => {
+  //   const { value, name } = e.target;
+  //   console.log(e.target);
+
+  //   console.log({ value, name });
+
+  //   setCredentials({
+  //     ...credentials,
+  //     [name]: value,
+  //   });
+
+  //   // console.log(name);
+  // };
+  // console.log(credentials);
+  const submitEvent = (data) => {
+    //api call submit
+    // e.preventDefault()
+    console.log(data);
+  };
 
   return (
     <>
@@ -120,38 +155,67 @@ const LoginPage = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form
+                onSubmit={handleSubmit(submitEvent)}
+                className="space-y-4 md:space-y-6"
+                action="#"
+              >
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Your email
-                  </label>
-                  <input
+                  <InputLabel field={"email"} labelTxt={"Your email"} />
+                  <TextInputField
+                    control={control}
+                    name={"email"}
                     type="email"
+                    errMsg={errors?.email ? "Email is required" : ""}
+                    placeholder="name@company.com"
+                  />
+                  {/* <Controller
                     name="email"
+                    control={control}
+                    defaultValue={""}
+                    render={({ field }) => (
+                      <input
+                        type="email"
+                        {...field}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="name@company.com"
+                        // required={true}
+                      />
+                    )}
+                  ></Controller> */}
+
+                  {/* <input
+                    type="email"
                     id="email"
+                    // name="email"
+                    // onChange={inputChangeEvent}
+
+                    {...register("email", { required: true })}
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
-                    required=""
-                  />
+                    // required={true}
+                  /> */}
                 </div>
                 <div>
-                  <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Password
-                  </label>
-                  <input
-                    type="password"
+                  <InputLabel field={"password"} labelTxt={"Password"} />
+
+                  <TextInputField
                     name="password"
+                    type="password"
+                    control={control}
+                    errMsg={errors?.password ? "Password is required" : ""}
+                    placeholder="••••••••"
+                  />
+                  {/* <input
+                    type="password"
                     id="password"
+                    // name="password"
+                    // onChange={inputChangeEvent}
+
+                    {...register("password", { required: true })}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
-                  />
+                  /> */}
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
